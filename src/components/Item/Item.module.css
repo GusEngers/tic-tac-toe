@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6.5em;
+  height: 6.5em;
+  background-color: #ffffff;
+}
+
+.fa6-solidx {
+  font-size: 5em;
+  color: red;
+}
+
+.fa6-solido {
+  font-size: 5em;
+  color: cyan;
+}
+
+.fa6-solidban {
+  font-size: 5em;
+  color: transparent;
+}
