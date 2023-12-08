@@ -1,32 +1,37 @@
-import { Icon } from '@iconify/react';
-import style from './Item.module.css';
-import { ITEM_BAN, ITEM_O, ITEM_X } from '../../utils/Constants';
+// Utils
 import { useState } from 'react';
+import { ITEM_BAN, ITEM_O, ITEM_X } from '../../utils/Constants';
+import { ItemParams } from '../../utils/ParamsComponents';
+import style from './Item.module.css';
 
-export default function Item({
-  id,
-  player,
-  setPlayer,
-}: {
-  id: number;
-  player: string;
-  setPlayer: React.Dispatch<React.SetStateAction<string>>;
-}) {
+// Components
+import { Icon } from '@iconify/react';
+
+export default function Item(props: ItemParams) {
   const [element, setElement] = useState(ITEM_BAN);
   let className: string = element.replace(':', '');
 
   const handleClick = () => {
-    if (player === 'X' && element === ITEM_BAN) {
+    // No modificar las casillas cuando el juego está terminado
+    if (props.endGame.status) return;
+    
+    if (props.player === 'X' && element === ITEM_BAN) {
+      // Añadir 'X' si la casilla está vacía
+      props.changeItems(props.id, 'X');
+      props.setCount(props.count + 1);
       setElement(ITEM_X);
-      setPlayer('O');
-    } else if (player === 'O' && element === ITEM_BAN) {
+      props.setPlayer('O');
+    } else if (props.player === 'O' && element === ITEM_BAN) {
+      // Añadir 'O' si la casilla está vacía
+      props.changeItems(props.id, 'O');
+      props.setCount(props.count + 1);
       setElement(ITEM_O);
-      setPlayer('X');
+      props.setPlayer('X');
     }
   };
 
   return (
-    <div id={id.toString()} className={style.container} onClick={handleClick}>
+    <div id={props.id.toString()} className={style.container} onClick={handleClick}>
       <Icon icon={element} className={style[className]} />
     </div>
   );
