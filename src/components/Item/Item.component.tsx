@@ -1,5 +1,4 @@
 // Utils
-import { useState } from 'react';
 import { ITEM_BAN, ITEM_O, ITEM_X } from '../../utils/Constants';
 import { ItemParams } from '../../utils/ParamsComponents';
 import style from './Item.module.css';
@@ -8,31 +7,44 @@ import style from './Item.module.css';
 import { Icon } from '@iconify/react';
 
 export default function Item(props: ItemParams) {
-  const [element, setElement] = useState(ITEM_BAN);
-  let className: string = element.replace(':', '');
-
   const handleClick = () => {
     // No modificar las casillas cuando el juego está terminado
     if (props.endGame.status) return;
-    
-    if (props.player === 'X' && element === ITEM_BAN) {
+
+    if (props.player === 'X' && props.element === null) {
       // Añadir 'X' si la casilla está vacía
       props.changeItems(props.id, 'X');
       props.setCount(props.count + 1);
-      setElement(ITEM_X);
       props.setPlayer('O');
-    } else if (props.player === 'O' && element === ITEM_BAN) {
+    } else if (props.player === 'O' && props.element === null) {
       // Añadir 'O' si la casilla está vacía
       props.changeItems(props.id, 'O');
       props.setCount(props.count + 1);
-      setElement(ITEM_O);
       props.setPlayer('X');
     }
   };
 
   return (
-    <div id={props.id.toString()} className={style.container} onClick={handleClick}>
-      <Icon icon={element} className={style[className]} />
+    <div
+      id={style[props.id.toString()]}
+      className={
+        props.element === null && !props.endGame.status ? style.container : style.container_off
+      }
+      onClick={handleClick}
+      aria-disabled={props.element !== null}
+    >
+      <Icon
+        icon={props.element === null ? ITEM_BAN : props.element === 'X' ? ITEM_X : ITEM_O}
+        className={
+          style[
+            props.element === null
+              ? ITEM_BAN.replace(':', '')
+              : props.element === 'X'
+              ? ITEM_X.replace(':', '')
+              : ITEM_O.replace(':', '')
+          ]
+        }
+      />
     </div>
   );
 }

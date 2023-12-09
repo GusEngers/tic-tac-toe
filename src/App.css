@@ -17,3 +17,11 @@
 #b-3 {
   color: #00ffff;
 }
+
+p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a:link {
+  color: #adff2f;
+}

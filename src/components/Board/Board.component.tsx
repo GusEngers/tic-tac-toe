@@ -14,7 +14,7 @@ export default function Board(props: BoardParams) {
 
   return (
     <div className={style.container}>
-      {props.items.map((_, index) => (
+      {props.items.map((element, index) => (
         <Item
           key={'IC-' + index}
           id={index}
@@ -24,6 +24,7 @@ export default function Board(props: BoardParams) {
           count={props.count}
           setCount={props.setCount}
           endGame={props.endGame}
+          element={element}
         />
       ))}
     </div>

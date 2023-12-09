@@ -24,6 +24,7 @@ export interface ItemParams {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   endGame: EndGame;
+  element: null | string;
 }
 
 export interface VerifyWinner {

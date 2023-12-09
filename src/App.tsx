@@ -10,8 +10,14 @@ function App() {
         <b id="b-1">Tic</b>-<b id="b-2">Tac</b>-<b id="b-3">Toe</b>
       </h1>
       <Game />
-      {/* <Icon icon={'fa6-solid:o'} width={'100'} />
-      <Icon icon={'fa6-solid:x'} width={'200'} /> */}
+      <footer>
+        <p>
+          Desarrollado por{' '}
+          <a href="http://github.com/GusEngers" target="_blank" rel="noopener noreferrer">
+            @GusEngers
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
