@@ -24,6 +24,18 @@ export function verifyWinner(arg: VerifyWinner) {
     arg.setEndGame({ player: arg.player, status: true, winner: true });
     return;
   }
+  if (idx(0, 3, 6)) {
+    arg.setEndGame({ player: arg.player, status: true, winner: true });
+    return;
+  }
+  if (idx(1, 4, 7)) {
+    arg.setEndGame({ player: arg.player, status: true, winner: true });
+    return;
+  }
+  if (idx(2, 5, 8)) {
+    arg.setEndGame({ player: arg.player, status: true, winner: true });
+    return;
+  }
   if (arg.count === 9) {
     arg.setEndGame({ player: arg.player, status: true, winner: false });
     return;

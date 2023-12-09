@@ -21,9 +21,16 @@ export default function Game() {
     }
   }, [count, items, player]);
 
+  const restart = () => {
+    setPlayer('X');
+    setCount(0);
+    setItems(new Array(9).fill(null));
+    setEndGame({ player, status: false, winner: false });
+  };
+
   return (
     <section className={style.container}>
-      <Info key="IC-1" player={player} endGame={endGame} />
+      <Info key="IC-1" player={player} endGame={endGame} restart={restart} />
       <Board
         key="BC-1"
         player={player}

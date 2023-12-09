@@ -3,6 +3,7 @@ import { EndGame } from './Types';
 export interface InfoParams {
   player: string;
   endGame: EndGame;
+  restart: () => void;
 }
 
 export interface BoardParams {
